@@ -1,0 +1,9 @@
+# Dependency directory
+node_modules
+
+package-lock.json
+
+test.js
+
+#Intellij files
+/.idea/
