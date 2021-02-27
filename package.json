@@ -1,10 +1,15 @@
 {
   "name": "flying-events-sdk",
   "version": "1.0.0",
-  "description": "NodeJS SDK for flying events",
+  "description": "NodeJS SDK for flying events API",
+  "keywords": ["webhooks", "integration", "cloud"],
   "main": "index.js",
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flying-events/nodejs-sdk.git"
+  },
   "scripts": {
     "test": "mocha --reporter spec"
   },
