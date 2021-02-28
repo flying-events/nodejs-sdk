@@ -1,6 +1,6 @@
 {
   "name": "flying-events-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "NodeJS SDK for flying events API",
   "keywords": ["webhooks", "integration", "cloud"],
   "main": "index.js",
