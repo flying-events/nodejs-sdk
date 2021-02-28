@@ -163,6 +163,38 @@ describe("FlyingEventsClient - methods", function () {
             });
         });
 
+        it("should send event to the worker when payload is an object", function (done) {
+            const tokenRequestData = {
+                applicationKey: "xxx",
+                applicationSecret: "yyy",
+            };
+            let tokenRequest = nock(API_BASE_URL)
+                .post("/api/application/request-token", tokenRequestData)
+                .reply(
+                    200,
+                    {},
+                    {
+                        Authorization: jwtTokenExample,
+                    }
+                );
+
+            const configData = {
+                eventName: "eventName",
+                payload: { name: "name", id: 3 },
+                subscribersIds: ["1", "2"],
+            };
+            let sendEventRequest = nock(API_BASE_URL)
+                .matchHeader("Authorization", "Bearer " + jwtTokenExample)
+                .post("/api/worker/send-event", configData)
+                .reply(201);
+            client.sendEvent(configData, function (err, data) {
+                if (err) throw err;
+                tokenRequest.done();
+                sendEventRequest.done();
+                done();
+            });
+        });
+
         it("should send event to the fail safe when worker fails", function (done) {
             client._setAccessToken(jwtTokenExample);
             const configData = {
